@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221210648) do
+ActiveRecord::Schema.define(version: 20160224104414) do
+
+  create_table "histories", force: :cascade do |t|
+    t.integer  "room_id"
+    t.float    "max_temperature"
+    t.float    "min_temperature"
+    t.float    "avg_temperature"
+    t.float    "max_humidity"
+    t.float    "min_humidity"
+    t.float    "avg_humidity"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "histories", ["room_id"], name: "index_histories_on_room_id"
 
   create_table "measures", force: :cascade do |t|
     t.float    "temperature"

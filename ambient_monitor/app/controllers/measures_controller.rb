@@ -11,6 +11,7 @@ before_action :set_room
     @measure.room = @room
     respond_to do |format|
       if @measure.save
+        Measure.clean_old_measures(@room)
         format.json { head :created }
       else
         format.json { render json: @room.errors, status: :unprocessable_entity }
