@@ -1,6 +1,5 @@
-<h1>Editing Room</h1>
-
+<ul class="breadcrumbs">
+      <li><a href="/rooms">Rooms</a></li>
+      <li class="unavailable"><%=@room.name%></li>
+</ul>
 <%= render 'form' %>
-
-<%= link_to 'Show', [@user, @room] %> |
-<%= link_to 'Back', user_rooms_path %>

@@ -14,3 +14,10 @@
  *= require_tree .
  *= require_self
  */
+
+ @media only screen and (min-width: 48em) {
+     .column.large-left,
+     .columns.large-left {
+         float: left !important;
+     }
+ }

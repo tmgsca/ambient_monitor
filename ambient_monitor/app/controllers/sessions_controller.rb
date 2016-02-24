@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       respond_to do |format|
         if @session.save
           session[:token] = @session.token
-          format.html { redirect_to user_rooms_url(@user), notice: 'Session was successfully created.' }
+          format.html { redirect_to user_rooms_url(@user) }
           format.json { render :show, status: :created, location: @session }
         else
           format.html { render :new }
@@ -40,6 +40,7 @@ class SessionsController < ApplicationController
   def destroy
     @session.destroy
     respond_to do |format|
+      session.clear
       format.html { redirect_to users_url, notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
     end

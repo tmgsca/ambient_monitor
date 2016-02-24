@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224104414) do
+ActiveRecord::Schema.define(version: 20160224114520) do
 
   create_table "histories", force: :cascade do |t|
     t.integer  "room_id"
@@ -46,8 +46,16 @@ ActiveRecord::Schema.define(version: 20160224104414) do
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.float    "max_winter_temp"
+    t.float    "max_summer_temp"
+    t.float    "min_winter_temp"
+    t.float    "min_summer_temp"
+    t.float    "max_summer_humidity"
+    t.float    "max_winter_humidity"
+    t.float    "min_summer_humidity"
+    t.float    "min_winter_humidity"
   end
 
   add_index "rooms", ["user_id"], name: "index_rooms_on_user_id"
