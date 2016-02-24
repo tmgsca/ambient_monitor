@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Users</h3>
+
+<table role="grid">
+  <thead>
+    <tr>
+      <th width="100">#</th>
+      <th>Name</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.id %></td>
+        <td><%= link_to room.name, user_room_path(room.user, room) %></td>
+        <td><%= link_to 'Edit', edit_user_room_path(room.user, room) %></td>
+        <td><%= link_to 'Destroy', user_room_path(room.user, room), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<div class="panel">
+    <%= link_to 'New Room', new_user_room_path, class: 'button left' %>
+</div>

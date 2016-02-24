@@ -1,0 +1,49 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <hr>
+  <div class="row">
+    <div class="small-5 medium-5 large-5 column">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-5 medium-5 large-5 column">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-5 medium-5 large-5 column">
+      <%= f.label :role %>
+      <%= collection_select(:user, :role_id, Role.all, :id, :description) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-6 medium-5 large-5 column">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="small-6 medium-5 large-5 column end">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-6 medium-5 large-5 column end">
+      <div class="actions">
+        <%= f.submit class: "button" %>
+      </div>
+    </div>
+  </div>
+<% end %>

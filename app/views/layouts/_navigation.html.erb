@@ -1,0 +1,37 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="example-menu">
+  <div class="top-bar-left">
+    <ul class="menu">
+      <li class="menu-text" style="padding:0px;">
+        <a class="name" style="padding:0px;"href="/"><%= image_tag("snowflake.png", size: "32") %>
+          <span class='site-title'>Ambient Monitor</span>
+        </a>
+      </li>
+      <% if @session.present? && @session.user.present? %>
+      <li class="divider"></li>
+      <li><%= link_to 'Users', users_path if @session.is_admin? %></li>
+      <li><%= link_to 'Rooms', user_rooms_path(@session.user) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% unless @session.nil? %>
+  <% unless @session.nil? || @session.user.nil? %>
+  <div class="top-bar-right">
+    <ul class="dropdown menu" data-dropdown-menu><li>
+      <a href="#">
+        <%= @session.user.name %>
+      </a>
+      <ul class="menu vertical">
+        <li><%= link_to 'Profile', @user %></li>
+        <li><%= link_to 'Logout', @session, method: :delete %></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<% end %>
+<% end %>
+</div>
