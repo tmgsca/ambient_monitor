@@ -1,4 +1,7 @@
-nav {
+#top-bar, .divider {
+  background-color: #CCCCCC;
+}
 
-  height: 50px;
+.site-title {
+  margin-right: 1em;
 }

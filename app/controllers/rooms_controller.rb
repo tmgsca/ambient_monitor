@@ -75,6 +75,8 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name)
+      params.require(:room).permit(:name,
+      :max_winter_temp, :max_summer_temp, :min_winter_temp, :min_summer_temp,
+      :max_winter_humidity, :max_summer_humidity, :min_winter_humidity, :min_summer_humidity)
     end
 end

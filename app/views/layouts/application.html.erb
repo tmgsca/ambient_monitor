@@ -8,13 +8,18 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-<%= render 'layouts/navigation' %>
-<section class="container">
+
+  <header>
+      <%= render 'layouts/navigation' %>
+  </header>
+
+  <section class="container">
     <%= yield %>
-</section>
+  </section>
   </body>
 </html>

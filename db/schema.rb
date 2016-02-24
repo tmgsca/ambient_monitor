@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221210648) do
+ActiveRecord::Schema.define(version: 20160224114520) do
+
+  create_table "histories", force: :cascade do |t|
+    t.integer  "room_id"
+    t.float    "max_temperature"
+    t.float    "min_temperature"
+    t.float    "avg_temperature"
+    t.float    "max_humidity"
+    t.float    "min_humidity"
+    t.float    "avg_humidity"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "histories", ["room_id"], name: "index_histories_on_room_id"
 
   create_table "measures", force: :cascade do |t|
     t.float    "temperature"
@@ -32,8 +46,16 @@ ActiveRecord::Schema.define(version: 20160221210648) do
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.float    "max_winter_temp"
+    t.float    "max_summer_temp"
+    t.float    "min_winter_temp"
+    t.float    "min_summer_temp"
+    t.float    "max_summer_humidity"
+    t.float    "max_winter_humidity"
+    t.float    "min_summer_humidity"
+    t.float    "min_winter_humidity"
   end
 
   add_index "rooms", ["user_id"], name: "index_rooms_on_user_id"

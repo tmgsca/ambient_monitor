@@ -6,10 +6,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
 
   before_action :authenticate
+  before_action :set_logged_user
+
+  def set_logged_user
+    @session = current_session unless current_session.nil?
+  end
 
 	def authenticate
     if current_session.nil?
       respond_to do |format|
+        session.clear
         format.html { redirect_to new_session_url, notice: 'You need to be logged in'}
         format.json { head :unauthorized  }
       end

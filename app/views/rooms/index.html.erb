@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Rooms</h1>
+<h3>Users</h3>
 
 <table role="grid">
   <thead>
     <tr>
       <th width="100">#</th>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -15,8 +15,7 @@
     <% @rooms.each do |room| %>
       <tr>
         <td><%= room.id %></td>
-        <td><%= room.name %></td>
-        <td><%= link_to 'Show', user_room_path(room.user, room) %></td>
+        <td><%= link_to room.name, user_room_path(room.user, room) %></td>
         <td><%= link_to 'Edit', edit_user_room_path(room.user, room) %></td>
         <td><%= link_to 'Destroy', user_room_path(room.user, room), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

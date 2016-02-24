@@ -10,28 +10,40 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+  <hr>
+  <div class="row">
+    <div class="small-5 medium-5 large-5 column">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class="small-5 medium-5 large-5 column">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :role %>
-    <%= collection_select(:user, :role_id, Role.all, :id, :description) %>
+  <div class="row">
+    <div class="small-5 medium-5 large-5 column">
+      <%= f.label :role %>
+      <%= collection_select(:user, :role_id, Role.all, :id, :description) %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+  <div class="row">
+    <div class="small-6 medium-5 large-5 column">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+    <div class="small-6 medium-5 large-5 column end">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit class: "button" %>
+  <div class="row">
+    <div class="small-6 medium-5 large-5 column end">
+      <div class="actions">
+        <%= f.submit class: "button" %>
+      </div>
+    </div>
   </div>
 <% end %>
