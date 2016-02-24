@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :set_logged_user
 
   def set_logged_user
+    
     @session = current_session unless current_session.nil?
   end
 
