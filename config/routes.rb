@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :rooms do
-      put 'track' => 'room#track', as: :track
-      put 'untrack' => 'room#untrack', as: :untrack
+      put 'track' => 'room#track', as: :track,  :defaults => { :format => 'json' }
+      put 'untrack' => 'room#untrack', as: :untrack,  :defaults => { :format => 'json' }
       resources :measures, only: [:index, :create, :show], :defaults => { :format => 'json' }
     end
   end

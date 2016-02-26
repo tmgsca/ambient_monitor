@@ -98,7 +98,10 @@ class RoomsController < ApplicationController
     end
 
     def validate_room_user
-      head :unauthorized unless @room.user == @user
+      unless @room.user == @user
+        head :unauthorized
+        false
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

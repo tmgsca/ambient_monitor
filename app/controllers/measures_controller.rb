@@ -7,6 +7,7 @@ before_action :set_room
   end
 
   def create
+    validate_measure_room_session
     @measure = Measure.new(measure_params)
     @measure.room = @room
     respond_to do |format|
@@ -22,6 +23,13 @@ before_action :set_room
   private
     def set_room
       @room = Room.find(params[:room_id])
+    end
+
+    def validate_measure_room_session
+      unless @room.session.present? && @room.session == current_session
+        head :unauthorized
+        false
+      end
     end
 
     def set_user
