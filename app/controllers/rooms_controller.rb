@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy, :track, :untrack]
+  before_action :set_room, only: [:show, :edit, :update, :destroy]
   before_action :set_user
 
   # GET /users/1/rooms
@@ -64,6 +64,8 @@ class RoomsController < ApplicationController
   end
 
   def track
+    @room = Room.find(params[:room_id])
+    validate_room_user
     @room.session = current_session
     respond_to do |format|
       if @room.save
@@ -75,6 +77,7 @@ class RoomsController < ApplicationController
   end
 
   def untrack
+    @room = Room.find(params[:room_id])
     validate_room_user
     @room.session = nil
     respond_to do |format|
