@@ -65,7 +65,10 @@ class RoomsController < ApplicationController
 
   def track
     @room = Room.find(params[:room_id])
-    validate_room_user
+    if @room.is_tracked || @room.user != @user
+      head :unauthorized
+      false
+    end
     @room.session = current_session
     respond_to do |format|
       if @room.save
@@ -78,7 +81,10 @@ class RoomsController < ApplicationController
 
   def untrack
     @room = Room.find(params[:room_id])
-    validate_room_user
+    unless @room.user == @user
+      head :unauthorized
+      return
+    end
     @room.session = nil
     respond_to do |format|
       if @room.save
@@ -98,13 +104,6 @@ class RoomsController < ApplicationController
     def set_user
       @user = User.find(params[:user_id])
       head :unauthorized unless @user == current_session.user || current_session.user.role_id == 1
-    end
-
-    def validate_room_user
-      unless @room.user == @user
-        head :unauthorized
-        false
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
