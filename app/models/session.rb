@@ -1,5 +1,6 @@
 class Session < ActiveRecord::Base
   belongs_to :user
+  has_one :room
   has_secure_token
 
   def is_admin?

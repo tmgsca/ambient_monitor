@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room, only: [:show, :edit, :update, :destroy, :track, :untrack]
   before_action :set_user
 
   # GET /users/1/rooms
@@ -55,10 +55,34 @@ class RoomsController < ApplicationController
   # DELETE /users/1/rooms/1
   # DELETE /users/1/rooms/1.json
   def destroy
+    validate_room_user
     @room.destroy
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def track
+    @room.session = current_session
+    respond_to do |format|
+      if @room.save
+        format.json { head :no_content }
+      else
+        format.json { head :unprocessable_entity }
+      end
+    end
+  end
+
+  def untrack
+    validate_room_user
+    @room.session = nil
+    respond_to do |format|
+      if @room.save
+        format.json { head :no_content }
+      else
+        format.json { head :unprocessable_entity }
+      end
     end
   end
 
@@ -71,6 +95,10 @@ class RoomsController < ApplicationController
     def set_user
       @user = User.find(params[:user_id])
       head :unauthorized unless @user == current_session.user || current_session.user.role_id == 1
+    end
+
+    def validate_room_user
+      head :unauthorized unless @room.user == @user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
