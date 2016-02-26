@@ -9,6 +9,7 @@ json.array!(@rooms) do |room|
   json.min_winter_humidity room.min_winter_humidity
   json.max_summer_humidity room.max_summer_humidity
   json.min_summer_humidity room.min_summer_humidity
+  json.is_tracked room.session.present?
   json.measures do
       json.array!(room.measures.take(1)) do |measure|
         json.id measure.id
