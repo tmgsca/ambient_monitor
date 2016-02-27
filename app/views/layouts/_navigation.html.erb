@@ -18,7 +18,7 @@
       <% end %>
     </ul>
   </div>
-  <% unless @session.nil? %>
+
   <% unless @session.nil? || @session.user.nil? %>
   <div class="top-bar-right">
     <ul class="dropdown menu" data-dropdown-menu><li>
@@ -33,5 +33,5 @@
   </ul>
 </div>
 <% end %>
-<% end %>
+
 </div>

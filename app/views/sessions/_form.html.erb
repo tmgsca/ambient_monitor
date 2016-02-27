@@ -1,20 +1,28 @@
 <%= form_tag '/sessions' do -%>
-  <p id="error">
-    <%= flash[:error] %>
-  </p>
-  <div class="row">
-    <div class="large-12 columns">
-      <label>Email</label>
-      <%= text_field_tag "email" %>
-    </div>
-    <div class="large-12 columns">
-      <label>Password</label>
-      <%= password_field_tag "password" %>
-    </div>
+<p id="error">
+  <%= flash[:error] %>
+</p>
+
+<div class="row">
+  <div class="column">
+    <label>Email</label>
+    <%= text_field_tag "email" %>
   </div>
-  <div class="row">
-    <div class="large-12 columns" >
-      <%= submit_tag 'Login', class: "button expand" %>
-    </div>
+</div>
+<div class="row">
+  <div class="column">
+    <label>Password</label>
+    <%= password_field_tag "password" %>
   </div>
+</div>
+<div class="row">
+  <div class="column small-12 medium-12 large-12 small-centered text-center">
+    <%= submit_tag 'Sign In', class: "button small-5" %>
+  </div>
+</div>
+<div class="row">
+  <div class="column small-12 medium-12 large-12 small-centered text-center" >
+    Not a member? <%= link_to 'Sign up now!', new_user_url ,class: 'center' %>
+  </div>
+</div>
 <% end %>
