@@ -46,16 +46,16 @@ ActiveRecord::Schema.define(version: 20160226170506) do
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.float    "max_winter_temp"
-    t.float    "max_summer_temp"
-    t.float    "min_winter_temp"
-    t.float    "min_summer_temp"
-    t.float    "max_summer_humidity"
-    t.float    "max_winter_humidity"
-    t.float    "min_summer_humidity"
-    t.float    "min_winter_humidity"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.float    "max_winter_temp",     default: 23.0
+    t.float    "max_summer_temp",     default: 26.0
+    t.float    "min_winter_temp",     default: 20.0
+    t.float    "min_summer_temp",     default: 24.0
+    t.float    "max_summer_humidity", default: 70.0
+    t.float    "max_winter_humidity", default: 70.0
+    t.float    "min_summer_humidity", default: 30.0
+    t.float    "min_winter_humidity", default: 30.0
     t.integer  "session_id"
   end
 
