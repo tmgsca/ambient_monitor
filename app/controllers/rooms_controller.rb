@@ -55,7 +55,10 @@ class RoomsController < ApplicationController
   # DELETE /users/1/rooms/1
   # DELETE /users/1/rooms/1.json
   def destroy
-    validate_room_user
+    unless @room.user == @user
+      head :unauthorized
+      return
+    end
     @room.destroy
     respond_to do |format|
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
