@@ -35,14 +35,23 @@ class SessionsController < ApplicationController
     end
   end
 
-  # DELETE /sessions
-  # DELETE /sessions.json
+  # DELETE /sessions/:id
   def destroy
     @session.destroy
     respond_to do |format|
       session.clear
       format.html { redirect_to users_url, notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+  # DELETE /sessions.json
+  def sign_out
+    if current_session.destroy
+      respond_to do |format|
+        format.json { head :no_content }
+      end
+    else
+      format.json { head :not_found }
     end
   end
 

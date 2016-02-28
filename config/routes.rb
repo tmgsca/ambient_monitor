@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     end
   end
 
+  scope :sessions do
+    delete '' => 'sessions#sign_out', as: :sign_out,  :defaults => { :format => 'json' }
+  end
+
   resources :sessions
-  
+
 end
